@@ -10,10 +10,9 @@ image = pygame.image.load("ball.png").convert()
 
 xBall = width/2
 yBall = height/2
-vx = 0
+vx = 5
 vy = 0
 dt = 1
-gravite = [0,-1]
 G = 9.81
 vitesse = [vx,vy]
 
@@ -27,28 +26,29 @@ while running:
 
     pressed = pygame.key.get_pressed()
     if pressed[pygame.K_LEFT]:
-        xBall -= 5
+        vx = - 5
     if pressed[pygame.K_RIGHT]:
-        xBall += 5
+        vx = + 5
     if pressed[pygame.K_UP]:
         vy = 20
         dt = 1
     if pressed[pygame.K_DOWN]:
-        yBall += 1
+        running = False
 
     #Gravité
 
     xBall = xBall + vx * dt
     yBall = yBall - vy * dt
     vx = vx
-    print (xBall, yBall, vy)
     vy = vy - 0.1 * G * dt
 
     #Collision bords
     if xBall < 0 :  #bord gauche
-        xBall += 5
+        vx = 0
+        xBall = 0
     if xBall > width - image.get_width():   #bord droit
-        xBall -= 5
+        vx = 0
+        xBall = width - image.get_width()
     if yBall < 0 :  #bord haut
         vy = 0
         yBall = 0
