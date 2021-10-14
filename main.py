@@ -1,5 +1,6 @@
 import pygame
 
+#comment
 pygame.init()
 width = 1500
 height = 800
